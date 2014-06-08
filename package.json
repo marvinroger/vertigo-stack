@@ -1,0 +1,33 @@
+{
+  "name": "marvinhq-stack",
+  "version": "0.1.0",
+  "description": "MarvinHQ main stack for webapps.",
+  "author": "MarvinHQ",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MarvinHQ/stack.git"
+  },
+  "scripts": {
+    "start": "coffee app.coffee",
+    "test": "mocha -R landing",
+    "build": "gulp build --require coffee-script/register",
+    "clean": "gulp clean --require coffee-script/register",
+    "deploy": "fly production"
+  },
+  "dependencies": {
+    "coffee-script": "1.7.x",
+    "express": "4.3.x",
+    "jade": "1.3.x"
+  },
+  "devDependencies": {
+    "chai": "1.9.x",
+    "flightplan": "0.3.x",
+    "gulp": "3.6.x",
+    "gulp-clean": "0.3.x",
+    "gulp-coffee": "1.4.x",
+    "gulp-livereload": "2.0.x",
+    "gulp-stylus": "1.0.x",
+    "mocha": "1.20.x"
+  }
+}
