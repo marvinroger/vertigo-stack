@@ -7,12 +7,12 @@ stylus = require 'gulp-stylus'
 gulp.task 'stylus', ->
   gulp.src './assets/styl/main.styl'
     .pipe stylus { compress: true }
-    .pipe gulp.dest './css'
+    .pipe gulp.dest './public/css'
 
 gulp.task 'coffee', ->
   gulp.src './assets/coffee/**/*.coffee'
     .pipe coffee()
-    .pipe gulp.dest './js'
+    .pipe gulp.dest './public/js'
 
 gulp.task 'clean', ->
   gulp.src('./dist', {read: false})
@@ -35,7 +35,7 @@ gulp.task 'default', ['stylus', 'coffee'], () ->
   jsWatcher.on 'change', livereload.changed
 
 gulp.task 'build', ['clean', 'stylus', 'coffee'], () ->
-  gulp.src('./{css,js,public,views}/**/*', {base: './'})
+  gulp.src('./{public,views}/**/*', {base: './'})
     .pipe(gulp.dest('./dist/'));
   gulp.src('./{app.coffee,package.json}', {base: './'})
     .pipe(gulp.dest('./dist/'));
