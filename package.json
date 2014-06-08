@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "coffee app.coffee",
-    "test": "mocha -R spec",
+    "test": "mocha -R spec --compilers coffee:coffee-script/register",
     "build": "gulp build --require coffee-script/register",
     "clean": "gulp clean --require coffee-script/register",
     "deploy": "fly production"
