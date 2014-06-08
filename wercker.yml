@@ -3,3 +3,17 @@ build:
   steps:
     - npm-install
     - npm-test
+    - script:
+        name: build
+        code: npm run build
+
+deploy:
+  steps:
+    - script:
+        name: write ssh private key
+        code: |-
+          export PRIVATE_KEY=`mktemp`
+          echo -e $WERCKER_PRIVATE_KEY > $PRIVATE_KEY
+    - script:
+        name: fly production
+        code: npm run deploy

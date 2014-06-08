@@ -35,7 +35,11 @@ gulp.task 'default', ['stylus', 'coffee'], () ->
   jsWatcher.on 'change', livereload.changed
 
 gulp.task 'build', ['clean', 'stylus', 'coffee'], () ->
+  if process.env.WERCKER_OUTPUT_DIR
+    dest = process.env.WERCKER_OUTPUT_DIR
+  else
+    dest = './dist/'
   gulp.src('./{public,views}/**/*', {base: './'})
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(dest));
   gulp.src('./{app.coffee,package.json}', {base: './'})
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(dest));
