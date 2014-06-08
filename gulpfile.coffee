@@ -35,7 +35,7 @@ gulp.task 'default', ['stylus', 'coffee'], () ->
   jsWatcher.on 'change', livereload.changed
 
 gulp.task 'build', ['clean', 'stylus', 'coffee'], () ->
-  if process.env.WERCKER_OUTPUT_DIR
+  if process.env.CI
     dest = process.env.WERCKER_OUTPUT_DIR
   else
     dest = './dist/'
