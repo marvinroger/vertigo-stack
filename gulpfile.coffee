@@ -30,8 +30,9 @@ gulp.task 'build-replace', ->
     .pipe gulp.dest config.build_dest + 'public'
 
 gulp.task 'clean', ->
-  gulp.src(config.build_dest, {read: false})
-    .pipe(clean());
+  if not process.env.CI
+    gulp.src(config.build_dest, {read: false})
+      .pipe(clean());
 
 gulp.task 'default', ['stylus', 'coffee'], () ->
   livereload.listen();
