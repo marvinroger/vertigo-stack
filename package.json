@@ -27,7 +27,9 @@
     "gulp-clean": "0.3.x",
     "gulp-coffee": "2.0.x",
     "gulp-livereload": "2.1.x",
+    "gulp-replace": "^0.3.0",
     "gulp-stylus": "1.0.x",
-    "mocha": "1.20.x"
+    "mocha": "1.20.x",
+    "run-sequence": "^0.3.6"
   }
 }
