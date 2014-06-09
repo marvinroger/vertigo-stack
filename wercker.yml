@@ -5,7 +5,7 @@ build:
     - npm-test
     - script:
         name: build
-        code: npm run build
+        code: NODE_ENV=deployment npm run build
 
 deploy:
   steps:
@@ -16,4 +16,4 @@ deploy:
           echo -e $WERCKER_PRIVATE_KEY > $PRIVATE_KEY
     - script:
         name: fly production
-        code: npm run deploy
+        code: NODE_ENV=deployment npm run deploy
