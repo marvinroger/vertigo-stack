@@ -1,5 +1,5 @@
 host = 'host.fr'
-username: 'flightplan'
+username = 'flightplan'
 if process.env.CI
   buildDest = process.env.WERCKER_OUTPUT_DIR
 else
