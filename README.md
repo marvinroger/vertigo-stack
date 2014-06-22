@@ -16,6 +16,7 @@ This is a stack bootstrap using modern technologies:
 * **[Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/api/)** as testing framework
 * **[CoffeeScript](http://coffeescript.org/)** as scripting language
 * **[Stylus](http://learnboost.github.io/stylus/)** as styling language
+* **[Jeet](http://mojotech.github.io/jeet/)** as grid system
 * **[Jade](http://jade-lang.com/reference/)** as templating language
 * **[Gulp](https://github.com/gulpjs/gulp/blob/master/README.md#gulp---)** as building tool
 * **[Flightplan](https://github.com/pstadler/flightplan)** as deployment tool
