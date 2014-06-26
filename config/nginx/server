@@ -1,0 +1,28 @@
+# Non-WWW to WWW
+server {
+  listen 80;
+  server_name #DOMAIN#;
+
+  return 301 http://www.#DOMAIN#$request_uri;
+}
+
+server {
+  listen 80;
+  server_name www.#DOMAIN#;
+
+  charset utf-8;
+  # Force the latest IE version
+  # Use ChromeFrame if it's installed for a better experience for the poor IE folk
+  add_header "X-UA-Compatible" "IE=Edge";
+  # Prevent mobile network providers from modifying site
+  add_header "Cache-Control" "no-transform";
+
+  location / {
+    proxy_pass http://localhost:3001;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
