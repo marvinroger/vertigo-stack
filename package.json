@@ -14,7 +14,8 @@
     "dev":  "gulp",
     "build": "gulp build --require coffee-script/register",
     "clean": "gulp clean --require coffee-script/register",
-    "deploy": "fly production"
+    "setup": "fly setup:production && npm run build && fly init:production && npm run clean",
+    "deploy": "npm run build && fly deploy:production && npm run clean"
   },
   "dependencies": {
     "coffee-script": "1.7.x",
@@ -34,6 +35,7 @@
     "gulp-stylus": "1.0.x",
     "jeet": "5.2.x",
     "mocha": "1.20.x",
+    "replace": "0.2.x",
     "run-sequence": "0.3.x"
   }
 }

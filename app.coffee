@@ -1,9 +1,13 @@
 express = require 'express'
 app = express()
 app.set 'view engine', 'jade'
+env = process.env.NODE_ENV || 'development'
+if env == 'development'
+  app.set 'listening port', 3000
+else if env == 'production'
+  app.set 'listening port', process.env.PORT
 
 app.get '/', (req, res) ->
   res.render 'index', { title: 'MarvinHQ Stack' }
 
-
-app.listen 3000
+app.listen app.get('listening port'), 'localhost'
