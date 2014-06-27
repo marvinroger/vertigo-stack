@@ -19,8 +19,7 @@ This is a stack bootstrap using modern technologies:
 * **[Jeet](http://mojotech.github.io/jeet/)** as grid system
 * **[Jade](http://jade-lang.com/reference/)** as templating language
 * **[Gulp](https://github.com/gulpjs/gulp/blob/master/README.md#gulp---)** as building tool
-* **[Flightplan](https://github.com/pstadler/flightplan)** as deployment tool
-* **[Wercker](http://devcenter.wercker.com/)** as CI
+* **[Wercker](http://devcenter.wercker.com/)** as CI and Continuous Deployment tool
 
 These technologies allow to be more productive by reducing the amount of code needed, and are all available in NPM, avoiding the need to have another environment like Ruby installed.
 
@@ -63,4 +62,4 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 * `npm test` to test the app
 * `npm run dev` to start CoffeeScript/Stylus watching
 * `npm run build` to build the app
-* `npm run deploy` after building to deploy the app
+* `npm run clean` to clean build

@@ -13,9 +13,7 @@
     "test": "mocha -R spec --compilers coffee:coffee-script/register",
     "dev":  "gulp",
     "build": "gulp build --require coffee-script/register",
-    "clean": "gulp clean --require coffee-script/register",
-    "setup": "fly setup:production && npm run build && fly init:production && npm run clean",
-    "deploy": "npm run build && fly deploy:production && npm run clean"
+    "clean": "gulp clean --require coffee-script/register"
   },
   "dependencies": {
     "coffee-script": "1.7.x",

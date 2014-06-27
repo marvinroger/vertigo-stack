@@ -10,10 +10,18 @@ build:
 deploy:
   steps:
     - script:
-        name: write ssh private key
-        code: |-
-          export PRIVATE_KEY=`mktemp`
-          echo -e $WERCKER_PRIVATE_KEY > $PRIVATE_KEY
+        name: Initialize new repository
+        code: |
+          git Init
+          git config --global user.name "wercker"
+          git config --global user.email "pleasemailus@wercker.com"
+          git remote add dokku dokku@$SERVER_HOSTNAME:$PROJECT_NAME
     - script:
-        name: fly production
-        code: NODE_ENV=deployment npm run deploy
+        name: Add everything to the repository
+        code: |
+          git add .
+          git commit -m "Result of deploy $WERCKER_GIT_COMMIT"
+    - script:
+        name: Push to dokku
+        code: |
+          git push dokku master
