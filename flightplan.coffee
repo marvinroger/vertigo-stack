@@ -1,5 +1,6 @@
 Flightplan = require 'flightplan'
 plan = new Flightplan
+process.env.NODE_ENV = 'deployment' # Explicit for config
 config = require 'config'
 replace = require 'replace'
 
@@ -17,23 +18,19 @@ plan.briefing {
 # Setup (install necessary tools)
 
 plan.remote 'setup', (remote) ->
-  remote.log 'Update'
+  remote.log 'Update APT'
   remote.exec 'apt-get update'
-  remote.log 'Upgrade'
-  remote.exec 'apt-get dist-upgrade -y'
+  remote.log 'Upgrade system'
+  remote.exec 'apt-get upgrade -y'
 
   remote.log 'Add PPAs'
-  remote.exec 'apt-get install python-software-properties'
-  remote.exec 'add-apt-repository ppa:keithw/mosh'
+  remote.exec 'apt-get install -y python-software-properties'
   remote.exec 'apt-add-repository ppa:chris-lea/node.js'
   remote.exec 'apt-get update'
 
   remote.log 'Install Nginx'
   remote.exec 'apt-get install -y nginx'
   remote.exec "sed -i 's/^server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/' /etc/nginx/nginx.conf"
-
-  remote.log 'Install Mosh'
-  remote.exec 'apt-get install -y mosh'
 
   remote.log 'Install Node'
   remote.exec 'apt-get install -y nodejs'
