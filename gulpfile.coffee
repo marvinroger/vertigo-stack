@@ -2,6 +2,7 @@ config = require 'config'
 gulp = require 'gulp'
 clean = require 'gulp-clean'
 coffee = require 'gulp-coffee'
+csso = require 'gulp-csso'
 livereload = require 'gulp-livereload'
 replace = require 'gulp-replace'
 runSequence = require 'run-sequence'
@@ -9,7 +10,8 @@ stylus = require 'gulp-stylus'
 
 gulp.task 'stylus', ->
   gulp.src './assets/styl/main.styl'
-    .pipe stylus { compress: true }
+    .pipe stylus()
+    .pipe csso()
     .pipe gulp.dest './public/css'
 
 gulp.task 'coffee', ->
