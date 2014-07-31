@@ -3,6 +3,7 @@ gulp = require 'gulp'
 clean = require 'gulp-clean'
 coffee = require 'gulp-coffee'
 csso = require 'gulp-csso'
+imagemin = require 'gulp-imagemin'
 livereload = require 'gulp-livereload'
 replace = require 'gulp-replace'
 runSequence = require 'run-sequence'
@@ -20,10 +21,15 @@ gulp.task 'coffee', ->
     .pipe gulp.dest './public/js'
 
 gulp.task 'build-copy', ->
-  gulp.src('./{public,views}/**/*', {base: './'})
-    .pipe(gulp.dest(config.build_dest));
-  gulp.src('./{app.coffee,package.json}', {base: './'})
-    .pipe(gulp.dest(config.build_dest));
+  gulp.src './{public,views}/**/*', {base: './'}
+    .pipe gulp.dest config.build_dest
+  gulp.src './{app.coffee,package.json}', {base: './'}
+    .pipe gulp.dest config.build_dest
+
+gulp.task 'build-imagemin', ->
+  gulp.src './public/img/**/*.{png,jpg,gif,svg}', {base: './'}
+    .pipe imagemin {progressive: true}
+    .pipe gulp.dest config.build_dest
 
 gulp.task 'build-replace', ->
   date = new Date
@@ -53,4 +59,4 @@ gulp.task 'default', ['stylus', 'coffee'], () ->
   jsWatcher.on 'change', livereload.changed
 
 gulp.task 'build', ['clean', 'stylus', 'coffee'], ->
-  runSequence 'build-copy', 'build-replace'
+  runSequence 'build-copy', 'build-imagemin','build-replace'
