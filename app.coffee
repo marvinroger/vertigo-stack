@@ -10,6 +10,8 @@ if env == 'development'
 else if env == 'production'
   app.set 'listening port', process.env.PORT
 
+app.use express.static __dirname + '/public'
+
 app.get '/', (req, res) ->
   res.render 'index', { title: 'MarvinHQ Stack' }
 
