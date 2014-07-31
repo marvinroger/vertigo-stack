@@ -7,17 +7,22 @@ imagemin = require 'gulp-imagemin'
 livereload = require 'gulp-livereload'
 replace = require 'gulp-replace'
 runSequence = require 'run-sequence'
+sourcemaps = require 'gulp-sourcemaps'
 stylus = require 'gulp-stylus'
+uglify = require 'gulp-uglify'
 
 gulp.task 'stylus', ->
-  gulp.src './assets/styl/main.styl'
+  gulp.src './assets/styl/*.styl'
     .pipe stylus()
     .pipe csso()
     .pipe gulp.dest './public/css'
 
 gulp.task 'coffee', ->
   gulp.src './assets/coffee/**/*.coffee'
+    .pipe sourcemaps.init()
     .pipe coffee()
+    .pipe uglify()
+    .pipe sourcemaps.write()
     .pipe gulp.dest './public/js'
 
 gulp.task 'build-copy', ->
@@ -39,8 +44,12 @@ gulp.task 'build-replace', ->
 
 gulp.task 'clean', ->
   if not process.env.CI
-    gulp.src(config.build_dest, {read: false})
-      .pipe(clean());
+    gulp.src config.build_dest, {read: false}
+      .pipe clean()
+    gulp.src './public/css', {read: false}
+      .pipe clean()
+    gulp.src './public/js', {read: false}
+      .pipe clean()
 
 gulp.task 'default', ['stylus', 'coffee'], () ->
   livereload.listen();
@@ -58,5 +67,5 @@ gulp.task 'default', ['stylus', 'coffee'], () ->
   jsWatcher = gulp.watch './public/js/**/*.js'
   jsWatcher.on 'change', livereload.changed
 
-gulp.task 'build', ['clean', 'stylus', 'coffee'], ->
-  runSequence 'build-copy', 'build-imagemin','build-replace'
+gulp.task 'build', ->
+  runSequence 'clean', 'stylus', 'coffee', 'build-copy', 'build-imagemin','build-replace'
