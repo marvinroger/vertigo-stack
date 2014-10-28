@@ -73,8 +73,9 @@ gulp.task 'imagemin', 'Minify images in build', ->
     
 gulp.task 'humans', 'Update humans.txt update date', () ->
   date = new Date
+  formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2)
   gulp.src ['./dist/public/humans.txt']
-    .pipe replace '#last_update#', date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2)
+    .pipe replace '#last_update#', formattedDate
     .pipe gulp.dest './dist/public'
 
 gulp.task 'build', 'Build project into a dist directory', ['clean'], ->
