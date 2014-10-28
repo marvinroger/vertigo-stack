@@ -41,8 +41,7 @@ gulp.task 'dev', 'Run stylus and coffee on files changes', ['stylus', 'coffee'],
   jsWatcher = gulp.watch './public/js/**/*.js'
   jsWatcher.on 'change', livereload.changed
 
-gulp.task 'clean', 'Clean css, js, dist directories for fresh build',
-  (done) ->
+gulp.task 'clean', 'Clean css, js, dist directories for fresh build', (done) ->
   del [
     './dist'
     './public/css',
@@ -50,7 +49,7 @@ gulp.task 'clean', 'Clean css, js, dist directories for fresh build',
   ], done
 
 
-gulp.task 'build', 'Build project into a dist directory', ['clean'] ->
+gulp.task 'build', 'Build project into a dist directory', ['clean'], ->
   runSequence ['stylus', 'coffee']
 
   # Copy files
