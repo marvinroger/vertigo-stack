@@ -11,6 +11,10 @@ sourcemaps = require 'gulp-sourcemaps'
 stylus = require 'gulp-stylus'
 uglify = require 'gulp-uglify'
 
+######################
+# Assets Compilation #
+######################
+
 gulp.task 'stylus', 'Compile and optimize main.styl', ->
   gulp.src './assets/styl/main.styl'
     .pipe stylus()
@@ -24,6 +28,10 @@ gulp.task 'coffee', 'Compile and optimize coffeescript files with sourcemap supp
     .pipe uglify()
     .pipe sourcemaps.write()
     .pipe gulp.dest './public/js'
+    
+####################
+# Development mode #
+####################
 
 gulp.task 'dev', 'Run stylus and coffee on files changes', ['stylus', 'coffee'], () ->
   livereload.listen()
@@ -41,6 +49,10 @@ gulp.task 'dev', 'Run stylus and coffee on files changes', ['stylus', 'coffee'],
   jsWatcher = gulp.watch './public/js/**/*.js'
   jsWatcher.on 'change', livereload.changed
 
+#########
+# Build #
+#########
+  
 gulp.task 'clean', 'Clean css, js, dist directories for fresh build', (done) ->
   del [
     './dist'
@@ -48,23 +60,22 @@ gulp.task 'clean', 'Clean css, js, dist directories for fresh build', (done) ->
     './public/js'
   ], done
 
-
-gulp.task 'build', 'Build project into a dist directory', ['clean'], ->
-  runSequence ['stylus', 'coffee']
-
-  # Copy files
+gulp.task 'copy', 'Copy files to build', ->
   gulp.src './{public,views}/**/*', {base: './'}
     .pipe gulp.dest './dist'
   gulp.src './{app.coffee,package.json}', {base: './'}
     .pipe gulp.dest './dist'
 
-  # Minify images
-  gulp.src './public/img/**/*.{png,jpg,gif,svg}', {base: './'}
+gulp.task 'imagemin', 'Minify images in build', ->
+  gulp.src './dist/public/img/**/*.{png,jpg,gif,svg}', {base: './dist/'}
     .pipe imagemin {progressive: true}
     .pipe gulp.dest './dist'
-
-  # Update humans.txt
+    
+gulp.task 'humans', 'Update humans.txt update date', () ->
   date = new Date
   gulp.src ['./dist/public/humans.txt']
     .pipe replace '#last_update#', date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2)
     .pipe gulp.dest './dist/public'
+
+gulp.task 'build', 'Build project into a dist directory', ['clean'], ->
+  runSequence ['stylus', 'coffee'], 'copy', ['imagemin', 'humans']
