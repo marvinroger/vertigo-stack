@@ -1,8 +1,8 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
-clean = require 'gulp-clean'
 coffee = require 'gulp-coffee'
 csso = require 'gulp-csso'
+del = require 'del'
 imagemin = require 'gulp-imagemin'
 livereload = require 'gulp-livereload'
 replace = require 'gulp-replace'
@@ -26,7 +26,7 @@ gulp.task 'coffee', 'Compile and optimize coffeescript files with sourcemap supp
     .pipe gulp.dest './public/js'
 
 gulp.task 'dev', 'Run stylus and coffee on files changes', ['stylus', 'coffee'], () ->
-  livereload.listen();
+  livereload.listen()
   stylusWatcher = gulp.watch './assets/styl/**/*.styl', ['stylus']
   stylusWatcher.on 'change', (event) ->
     console.log event.path + ' was ' + event.type + ', running Stylus...'
@@ -41,31 +41,31 @@ gulp.task 'dev', 'Run stylus and coffee on files changes', ['stylus', 'coffee'],
   jsWatcher = gulp.watch './public/js/**/*.js'
   jsWatcher.on 'change', livereload.changed
 
-gulp.task 'clean', 'Clean css, js, shippable directories for fresh build', ->
-  gulp.src './shippable', {read: false}
-    .pipe clean()
-  gulp.src './public/css', {read: false}
-    .pipe clean()
-  gulp.src './public/js', {read: false}
-    .pipe clean()
+gulp.task 'clean', 'Clean css, js, dist directories for fresh build',
+  (done) ->
+  del [
+    './dist'
+    './public/css',
+    './public/js'
+  ], done
 
 
-gulp.task 'build', 'Build project into a shippable directory', ->
-  runSequence 'clean', 'stylus', 'coffee'
+gulp.task 'build', 'Build project into a dist directory', ['clean'] ->
+  runSequence ['stylus', 'coffee']
 
   # Copy files
   gulp.src './{public,views}/**/*', {base: './'}
-    .pipe gulp.dest './shippable'
+    .pipe gulp.dest './dist'
   gulp.src './{app.coffee,package.json}', {base: './'}
-    .pipe gulp.dest './shippable'
+    .pipe gulp.dest './dist'
 
   # Minify images
   gulp.src './public/img/**/*.{png,jpg,gif,svg}', {base: './'}
     .pipe imagemin {progressive: true}
-    .pipe gulp.dest './shippable'
+    .pipe gulp.dest './dist'
 
   # Update humans.txt
   date = new Date
-  gulp.src ['./shippable/public/humans.txt']
+  gulp.src ['./dist/public/humans.txt']
     .pipe replace '#last_update#', date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2)
-    .pipe gulp.dest './shippable/public'
+    .pipe gulp.dest './dist/public'
