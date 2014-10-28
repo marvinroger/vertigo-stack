@@ -40,14 +40,6 @@ Node and NPM are required, then `npm install`.
 
 ### Configuration
 
-#### Config files
-
-* **config/default.yml** contains common config between every environment. *(Example: name)*
-* **config/deployment.coffee** contains config required for deployment. *(Example: host)*
-* **config/development.yml** contains config required for development. *(Example: build_dest)*
-* **config/production.yml** contains config required for production. *(Example: ga_token)*
-* **config/runtime.yml** contains config required for runtime, very optional.
-
 #### Wercker *(optional)*
 
 In order to use the CI, Wercker needs to be configured with the repository containing this stack.
