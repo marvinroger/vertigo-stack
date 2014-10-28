@@ -4,9 +4,8 @@ MarvinHQ Stack
 [![Dependency Status](https://david-dm.org/marvinhq/stack.svg?style=flat)](https://david-dm.org/marvinhq/stack)
 [![devDependency Status](https://david-dm.org/marvinhq/stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/stack#info=devDependencies)
 [![wercker status](https://app.wercker.com/status/110f26565441783b2e8e413520f3f44e/s "wercker status")](https://app.wercker.com/project/bykey/110f26565441783b2e8e413520f3f44e)
-[![Stories in Ready](https://badge.waffle.io/marvinhq/stack.png?label=ready&title=Ready)](https://waffle.io/marvinhq/stack)
 
-MarvinHQ main stack for webapps.
+MarvinHQ modern stack for webapps.
 
 ## Overview
 
@@ -54,4 +53,3 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 * `npm test` to test the app
 * `npm run dev` to start CoffeeScript/Stylus watching
 * `npm run build` to build the app
-* `npm run clean` to clean build
