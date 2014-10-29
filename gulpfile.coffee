@@ -17,17 +17,23 @@ uglify = require 'gulp-uglify'
 # Assets Compilation #
 ######################
 
-gulp.task 'stylus', 'Compile and optimize main.styl with sourcemap support', ->
+gulp.task 'stylus', 'Process main.styl with sourcemap support', ->
   gulp.src './assets/styl/main.styl'
-    .pipe sourcemaps.init()
-    .pipe stylus({ use: koutoSwiss(), define: [{ 'ks-vendors-prefixes': false }] })
+    .pipe stylus({
+      sourcemap: { inline: true },
+      use: koutoSwiss(),
+      define: [{
+        'ks-vendors-prefixes': false
+      }]
+    })
+    .pipe sourcemaps.init({ loadMaps: true} )
     .pipe autoprefixer()
     .pipe minifyCss()
     .pipe sourcemaps.write()
     .pipe gulp.dest './public/css'
     .pipe browserSync.reload {stream: true}
 
-gulp.task 'coffee', 'Compile and optimize CoffeeScript files with sourcemap support', ->
+gulp.task 'coffee', 'Process CoffeeScript files with sourcemap support', ->
   gulp.src './assets/coffee/**/*.coffee'
     .pipe sourcemaps.init()
     .pipe coffee()
@@ -40,7 +46,9 @@ gulp.task 'coffee', 'Compile and optimize CoffeeScript files with sourcemap supp
 # Development mode #
 ####################
 
-gulp.task 'dev', 'Run stylus and coffee on file change with BrowserSync support', ['stylus', 'coffee'], () ->
+gulp.task 'dev',
+'Run stylus and coffee on file change with BrowserSync support',
+['stylus', 'coffee'], ->
   browserSync { proxy: '127.0.0.1:3000' }
   stylusWatcher = gulp.watch './assets/styl/**/*.styl', ['stylus']
   stylusWatcher.on 'change', (event) ->
