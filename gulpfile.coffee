@@ -1,10 +1,10 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
+browserSync = require 'browser-sync'
 coffee = require 'gulp-coffee'
 del = require 'del'
 imagemin = require 'gulp-imagemin'
 koutoSwiss = require 'kouto-swiss'
-livereload = require 'gulp-livereload'
 minifyCss = require 'gulp-minify-css'
 replace = require 'gulp-replace'
 runSequence = require 'run-sequence'
@@ -23,6 +23,7 @@ gulp.task 'stylus', 'Compile and optimize main.styl with sourcemap support', ->
     .pipe minifyCss()
     .pipe sourcemaps.write()
     .pipe gulp.dest './public/css'
+    .pipe browserSync.reload {stream: true}
 
 gulp.task 'coffee', 'Compile and optimize CoffeeScript files with sourcemap support', ->
   gulp.src './assets/coffee/**/*.coffee'
@@ -31,26 +32,21 @@ gulp.task 'coffee', 'Compile and optimize CoffeeScript files with sourcemap supp
     .pipe uglify()
     .pipe sourcemaps.write()
     .pipe gulp.dest './public/js'
+    .pipe browserSync.reload {stream: true}
     
 ####################
 # Development mode #
 ####################
 
-gulp.task 'dev', 'Run stylus and coffee on files changes', ['stylus', 'coffee'], () ->
-  livereload.listen()
+gulp.task 'dev', 'Run stylus and coffee on file change with BrowserSync support', ['stylus', 'coffee'], () ->
+  browserSync { proxy: '127.0.0.1:3000' }
   stylusWatcher = gulp.watch './assets/styl/**/*.styl', ['stylus']
   stylusWatcher.on 'change', (event) ->
     console.log event.path + ' was ' + event.type + ', running Stylus...'
 
-  cssWatcher = gulp.watch './public/css/**/*.css'
-  cssWatcher.on 'change', livereload.changed
-
   coffeeWatcher = gulp.watch './assets/coffee/**/*.coffee', ['coffee']
   coffeeWatcher.on 'change', (event) ->
     console.log event.path + ' was ' + event.type + ', running CoffeeScript...'
-
-  jsWatcher = gulp.watch './public/js/**/*.js'
-  jsWatcher.on 'change', livereload.changed
 
 #########
 # Build #
