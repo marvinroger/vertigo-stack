@@ -29,6 +29,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 * HTML5 Boilerplate-lite with Google Analytics embedded
 * Build with humans.txt update date
 * Automatic testing/deployment with Wercker
+* Server with compression enabled; threshold set to 1024
 
 ## Usage
 
