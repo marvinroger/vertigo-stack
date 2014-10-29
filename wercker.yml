@@ -5,7 +5,7 @@ build:
     - npm-test
     - script:
         name: build
-        code: NODE_ENV=deployment npm run build
+        code: npm run build
 
 deploy:
   steps:
