@@ -1,13 +1,13 @@
 /* TEAM */
 Project manager: Marvin Roger
-Site: http://marvinroger.fr
+Site: https://www.marvinroger.fr
 Twitter: @marvinroger
 Location: Paris, France
 
 
 /* SITE */
-Last update: #last_update# (Paris timezone)
+Last update: #last_update# (Europe/Paris timezone)
 Main language: fr
 Standards: HTML5, CSS3
 Components: Express, Jade, Normalize.css
-Software: Bower, Brackets, Chai, CoffeeScript, Gulp, Mocha, Photoshop, Stylus, Sublime Text
+Software: Bower, Chai, CoffeeScript, Gulp, Mocha, Photoshop, Sketch, Stylus
