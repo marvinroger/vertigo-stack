@@ -20,7 +20,7 @@ uglify = require 'gulp-uglify'
 gulp.task 'stylus', 'Compile and optimize main.styl with sourcemap support', ->
   gulp.src './assets/styl/main.styl'
     .pipe sourcemaps.init()
-    .pipe stylus({ use: koutoSwiss() })
+    .pipe stylus({ use: koutoSwiss(), define: [{ 'ks-vendors-prefixes': false }] })
     .pipe autoprefixer()
     .pipe minifyCss()
     .pipe sourcemaps.write()
