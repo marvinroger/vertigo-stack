@@ -1,6 +1,6 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
-autoprefixer = 'gulp-autoprefixer'
+autoprefixer = require 'gulp-autoprefixer'
 browserSync = require 'browser-sync'
 coffee = require 'gulp-coffee'
 del = require 'del'
