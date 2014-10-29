@@ -36,6 +36,7 @@
     "del": "0.1.x",
     "gulp-minify-css": "0.3.x",
     "kouto-swiss": "0.10.x",
-    "browser-sync": "~1.6.1"
+    "browser-sync": "~1.6.1",
+    "gulp-autoprefixer": "~1.0.1"
   }
 }

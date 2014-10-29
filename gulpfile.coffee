@@ -1,5 +1,6 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
+autoprefixer = 'gulp-autoprefixer'
 browserSync = require 'browser-sync'
 coffee = require 'gulp-coffee'
 del = require 'del'
@@ -20,6 +21,7 @@ gulp.task 'stylus', 'Compile and optimize main.styl with sourcemap support', ->
   gulp.src './assets/styl/main.styl'
     .pipe sourcemaps.init()
     .pipe stylus({ use: koutoSwiss() })
+    .pipe autoprefixer()
     .pipe minifyCss()
     .pipe sourcemaps.write()
     .pipe gulp.dest './public/css'
