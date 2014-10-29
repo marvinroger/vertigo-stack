@@ -16,13 +16,15 @@ uglify = require 'gulp-uglify'
 # Assets Compilation #
 ######################
 
-gulp.task 'stylus', 'Compile and optimize main.styl', ->
+gulp.task 'stylus', 'Compile and optimize main.styl with sourcemap support', ->
   gulp.src './assets/styl/main.styl'
+    .pipe sourcemaps.init()
     .pipe stylus({ use: koutoSwiss() })
     .pipe minifyCss()
+    .pipe sourcemaps.write()
     .pipe gulp.dest './public/css'
 
-gulp.task 'coffee', 'Compile and optimize coffeescript files with sourcemap support', ->
+gulp.task 'coffee', 'Compile and optimize CoffeeScript files with sourcemap support', ->
   gulp.src './assets/coffee/**/*.coffee'
     .pipe sourcemaps.init()
     .pipe coffee()
