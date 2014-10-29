@@ -47,16 +47,17 @@ gulp.task 'coffee', 'Process CoffeeScript files with sourcemap support', ->
 ####################
 
 gulp.task 'dev',
-'Run stylus and coffee on file change with BrowserSync support',
-['stylus', 'coffee'], ->
-  browserSync { proxy: '127.0.0.1:3000' }
-  stylusWatcher = gulp.watch './assets/styl/**/*.styl', ['stylus']
-  stylusWatcher.on 'change', (event) ->
-    console.log event.path + ' was ' + event.type + ', running Stylus...'
+  'Run stylus and coffee on file change with BrowserSync support',
+  ['stylus', 'coffee'], ->
+    browserSync { proxy: '127.0.0.1:3000' }
+    stylusWatcher = gulp.watch './assets/styl/**/*.styl', ['stylus']
+    stylusWatcher.on 'change', (event) ->
+      console.log event.path + ' was ' + event.type + ', running Stylus...'
 
-  coffeeWatcher = gulp.watch './assets/coffee/**/*.coffee', ['coffee']
-  coffeeWatcher.on 'change', (event) ->
-    console.log event.path + ' was ' + event.type + ', running CoffeeScript...'
+    coffeeWatcher = gulp.watch './assets/coffee/**/*.coffee', ['coffee']
+    coffeeWatcher.on 'change', (event) ->
+      console.log event.path + ' was ' +
+        event.type +', running CoffeeScript...'
 
 #########
 # Build #
@@ -82,7 +83,9 @@ gulp.task 'imagemin', 'Minify images in build', ->
     
 gulp.task 'humans', 'Update humans.txt update date', () ->
   date = new Date
-  formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2)
+  formattedDate = date.getFullYear() + '/' +
+    ('0' + (date.getMonth() + 1)).slice(-2) + '/' +
+    ('0' + date.getDate()).slice(-2)
   gulp.src ['./dist/public/humans.txt']
     .pipe replace '#last_update#', formattedDate
     .pipe gulp.dest './dist/public'

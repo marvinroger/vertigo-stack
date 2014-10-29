@@ -17,7 +17,7 @@
   "dependencies": {
     "coffee-script": "1.8.x",
     "express": "4.10.x",
-    "jade": "1.7.x",
+    "nunjucks": "1.1.x",
     "winston": "0.8.x"
   },
   "devDependencies": {

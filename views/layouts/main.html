@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    {% block content %}{% endblock %}
+
+    <script src="js/main.js"></script>
+    {% if settings.env == 'production' %}
+      <script>
+        (function(m,a,r,v,i,n){m.GoogleAnalyticsObject=v;m[v]||(m[v]=
+        function(){(m[v].q=m[v].q||[]).push(arguments)});m[v].v=+new Date;
+        i=a.createElement(r);n=a.getElementsByTagName(r)[0];
+        i.src='//www.google-analytics.com/analytics.js';
+        n.parentNode.insertBefore(i,n)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+      </script>
+    {% endif %}
+  </body>
+</html>
