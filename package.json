@@ -18,7 +18,8 @@
     "coffee-script": "1.8.x",
     "express": "4.10.x",
     "nunjucks": "1.1.x",
-    "winston": "0.8.x"
+    "winston": "0.8.x",
+    "compression": "~1.2.0"
   },
   "devDependencies": {
     "chai": "1.9.x",

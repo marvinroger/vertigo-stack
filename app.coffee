@@ -1,3 +1,4 @@
+compression = require 'compression'
 express = require 'express'
 nunjucks = require 'nunjucks'
 winston = require 'winston'
@@ -17,6 +18,7 @@ else
   winston.error 'Wrong NODE_ENV'
   process.exit 1
 
+app.use compression()
 app.use express.static __dirname + '/public'
 
 app.get '/', (req, res) ->
