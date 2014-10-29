@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
 coffee = require 'gulp-coffee'
-csso = require 'gulp-csso'
+minifyCss = require 'gulp-minify-css'
 del = require 'del'
 imagemin = require 'gulp-imagemin'
 livereload = require 'gulp-livereload'
@@ -18,7 +18,7 @@ uglify = require 'gulp-uglify'
 gulp.task 'stylus', 'Compile and optimize main.styl', ->
   gulp.src './assets/styl/main.styl'
     .pipe stylus()
-    .pipe csso()
+    .pipe minifyCSS()
     .pipe gulp.dest './public/css'
 
 gulp.task 'coffee', 'Compile and optimize coffeescript files with sourcemap support', ->
