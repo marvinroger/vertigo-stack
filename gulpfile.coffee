@@ -1,10 +1,11 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
 coffee = require 'gulp-coffee'
-minifyCss = require 'gulp-minify-css'
 del = require 'del'
 imagemin = require 'gulp-imagemin'
+koutoSwiss = require 'kouto-swiss'
 livereload = require 'gulp-livereload'
+minifyCss = require 'gulp-minify-css'
 replace = require 'gulp-replace'
 runSequence = require 'run-sequence'
 sourcemaps = require 'gulp-sourcemaps'
@@ -17,8 +18,8 @@ uglify = require 'gulp-uglify'
 
 gulp.task 'stylus', 'Compile and optimize main.styl', ->
   gulp.src './assets/styl/main.styl'
-    .pipe stylus()
-    .pipe minifyCSS()
+    .pipe stylus({ use: koutoSwiss() })
+    .pipe minifyCss()
     .pipe gulp.dest './public/css'
 
 gulp.task 'coffee', 'Compile and optimize coffeescript files with sourcemap support', ->
