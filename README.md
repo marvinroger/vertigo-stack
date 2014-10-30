@@ -1,5 +1,5 @@
 The Vertigo Stack
-==============
+=================
 
 [![Dependency Status](https://david-dm.org/marvinhq/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinhq/stack)
 [![devDependency Status](https://david-dm.org/marvinhq/vertigo-stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/stack#info=devDependencies)
@@ -8,8 +8,6 @@ The Vertigo Stack
 A modern web stack that will give you vertigo.
 
 ## Overview
-
-![Warning](https://cdn2.iconfinder.com/data/icons/splashyIcons/warning_triangle.png "Warning") `This is not yet production ready!`
 
 This is a web stack using modern bulletproof technologies:
 
@@ -33,12 +31,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 * Automatic testing/deployment with Wercker
 * Server with compression enabled; threshold set to 1024
 
-## Usage
-
-### Dependencies
-
-Every single command of this stack must be runned through NPM. This allows to avoid the need to install packages globally.
-Assuming Node and NPM are installed, a simple `npm install` and you are ready to go.
+## Use
 
 ### Configuration
 
