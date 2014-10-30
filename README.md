@@ -1,8 +1,8 @@
 The Vertigo Stack
 ==============
 
-[![Dependency Status](https://david-dm.org/marvinhq/stack.svg?style=flat)](https://david-dm.org/marvinhq/stack)
-[![devDependency Status](https://david-dm.org/marvinhq/stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/stack#info=devDependencies)
+[![Dependency Status](https://david-dm.org/marvinhq/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinhq/stack)
+[![devDependency Status](https://david-dm.org/marvinhq/vertigo-stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/stack#info=devDependencies)
 [![wercker status](https://app.wercker.com/status/110f26565441783b2e8e413520f3f44e/s "wercker status")](https://app.wercker.com/project/bykey/110f26565441783b2e8e413520f3f44e)
 
 A modern web stack that will give you vertigo.
