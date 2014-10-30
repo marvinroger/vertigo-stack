@@ -1,11 +1,11 @@
-MarvinHQ Stack
+The Vertigo Stack
 ==============
 
 [![Dependency Status](https://david-dm.org/marvinhq/stack.svg?style=flat)](https://david-dm.org/marvinhq/stack)
 [![devDependency Status](https://david-dm.org/marvinhq/stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/stack#info=devDependencies)
 [![wercker status](https://app.wercker.com/status/110f26565441783b2e8e413520f3f44e/s "wercker status")](https://app.wercker.com/project/bykey/110f26565441783b2e8e413520f3f44e)
 
-MarvinHQ modern stack for webapps.
+A modern web stack that will give you vertigo.
 
 ## Overview
 
@@ -55,6 +55,4 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 * `npm start` to start the app in development mode
 * `npm test` to test the app
 * `npm run dev` to start CoffeeScript/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
-* `npm run build` to build the app
- dev` to start CoffeeScript/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
 * `npm run build` to build the app
