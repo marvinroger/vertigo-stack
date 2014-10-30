@@ -1,5 +1,5 @@
 MarvinHQ Stack
-=====
+==============
 
 [![Dependency Status](https://david-dm.org/marvinhq/stack.svg?style=flat)](https://david-dm.org/marvinhq/stack)
 [![devDependency Status](https://david-dm.org/marvinhq/stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/stack#info=devDependencies)
@@ -11,14 +11,14 @@ MarvinHQ modern stack for webapps.
 
 ![Warning](https://cdn2.iconfinder.com/data/icons/splashyIcons/warning_triangle.png "Warning") `This is not yet production ready!`
 
-This is a stack bootstrap using modern technologies:
+This is a web stack using modern bulletproof technologies:
 
 * **[Codio](http://codio.com)** as Cloud IDE
 * **[NodeJS](http://nodejs.org/api/) with [Express 4](http://expressjs.com/4x/api.html)** as backend software
 * **[Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/api/)** as testing framework
 * **[CoffeeScript](http://coffeescript.org/)** as scripting language
 * **[Stylus](http://learnboost.github.io/stylus/)** as styling language
-* **[Jade](http://jade-lang.com/reference/)** as templating language
+* **[Nunjucks](http://mozilla.github.io/nunjucks/)** as templating language
 * **[Gulp](https://github.com/gulpjs/gulp/blob/master/README.md#gulp---)** as building tool
 * **[Wercker](http://devcenter.wercker.com/)** as CI and Continuous Deployment tool
 
@@ -55,4 +55,6 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 * `npm start` to start the app in development mode
 * `npm test` to test the app
 * `npm run dev` to start CoffeeScript/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
+* `npm run build` to build the app
+ dev` to start CoffeeScript/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
 * `npm run build` to build the app
