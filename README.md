@@ -33,7 +33,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 ## Installation
 
-See [https://github.com/MarvinHQ/slush-vertigo-stack#installation](installation).
+See [installation](https://github.com/MarvinHQ/slush-vertigo-stack#installation).
 
 ## Use
 
