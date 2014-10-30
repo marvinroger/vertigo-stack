@@ -9,6 +9,8 @@ MarvinHQ modern stack for webapps.
 
 ## Overview
 
+![Warning](https://cdn2.iconfinder.com/data/icons/splashyIcons/warning_triangle.png "Warning") `This is not yet production ready!`
+
 This is a stack bootstrap using modern technologies:
 
 * **[Codio](http://codio.com)** as Cloud IDE
