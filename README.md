@@ -31,6 +31,10 @@ These technologies allow to be more productive by reducing the amount of code ne
 * Automatic testing/deployment with Wercker
 * Server with compression enabled; threshold set to 1024
 
+## Installation
+
+See [https://github.com/MarvinHQ/slush-vertigo-stack#installation](installation).
+
 ## Use
 
 ### Configuration
