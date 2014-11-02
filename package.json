@@ -1,12 +1,12 @@
 {
-  "name": "marvinhq-stack",
-  "version": "0.1.0",
-  "description": "MarvinHQ main stack for webapps.",
-  "author": "MarvinHQ",
-  "main": "app.js",
+  "name": "<%= slugName %>",
+  "version": "0.0.0",
+  "description": "ADD DESCRIPTION",
+  "author": "ADD AUTHOR",
+  "main": "app.coffee",
   "repository": {
     "type": "git",
-    "url": "git@github.com:MarvinHQ/stack.git"
+    "url": "ADD REPOSITORY"
   },
   "scripts": {
     "start": "coffee app.coffee",

@@ -22,8 +22,8 @@ app.use compression()
 app.use express.static __dirname + '/public'
 
 app.get '/', (req, res) ->
-  res.render 'index.html', { title: 'MarvinHQ Stack' }
+  res.render 'index.html', { title: '<%= slugName %>' }
 
 app.listen app.get('listening port'), app.get('listening ip'), ->
-  winston.info 'MarvinHQ Stack listening on ' +
+  winston.info '<%= slugName %> listening on ' +
     app.get('listening ip') + ':' + app.get('listening port')
