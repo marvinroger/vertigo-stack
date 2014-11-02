@@ -6,6 +6,9 @@ build:
     - script:
         name: build
         code: npm run build
+    - script:
+        name: copy build to deployable
+        code: cp -a ./dist/. $WERCKER_OUTPUT_DIR
 
 deploy:
   steps:
