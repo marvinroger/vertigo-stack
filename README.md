@@ -1,4 +1,4 @@
-The Vertigo Stack
+The Vertig![Icon](https://cdn1.iconfinder.com/data/icons/fs-icons-ubuntu-by-franksouza-/32/draw-spiral.png) Stack
 =================
 
 [![Dependency Status](https://david-dm.org/marvinhq/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinhq/vertigo-stack)
