@@ -23,7 +23,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 ## Features
 
-* Stylus and CoffeScript build on change with source maps support (clean-css source map not working yet, see issues)
+* Stylus and CoffeScript build on change with source maps support
 * BrowserSync on Stylus/CoffeeScript code change
 * HTML5 Boilerplate-lite with Google Analytics embedded
 * Build with humans.txt update date
