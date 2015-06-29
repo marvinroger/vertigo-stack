@@ -1,8 +1,8 @@
 The Vertig![Icon](https://cdn1.iconfinder.com/data/icons/fs-icons-ubuntu-by-franksouza-/32/draw-spiral.png) Stack
 =================
 
-[![Dependency Status](https://david-dm.org/marvinhq/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinhq/vertigo-stack)
-[![devDependency Status](https://david-dm.org/marvinhq/vertigo-stack/dev-status.svg?style=flat)](https://david-dm.org/marvinhq/vertigo-stack#info=devDependencies)
+[![Dependency Status](https://david-dm.org/marvinroger/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinroger/vertigo-stack)
+[![devDependency Status](https://david-dm.org/marvinroger/vertigo-stack/dev-status.svg?style=flat)](https://david-dm.org/marvinroger/vertigo-stack#info=devDependencies)
 
 A modern web stack that will give you vertigo.
 
