@@ -1,34 +1,33 @@
 {
   "name": "<%= slugName %>",
-  "version": "0.0.0",
-  "description": "ADD DESCRIPTION",
-  "author": "ADD AUTHOR",
-  "main": "app.coffee",
+  "version": "0.0.1",
+  "description": "<%= description %>",
+  "author": "<%= author %>",
+  "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "ADD REPOSITORY"
+    "url": "<%= repository %>"
   },
   "scripts": {
-    "start": "coffee app.coffee",
-    "test": "mocha -R spec --compilers coffee:coffee-script/register",
+    "start": "node app.js",
+    "test": "mocha -R spec",
     "build": "gulp build",
-    "dev": "cult dev"
+    "dev": "gulp dev"
   },
   "dependencies": {
-    "coffee-script": "1.10.x",
     "compression": "1.5.x",
     "express": "4.11.x",
     "nunjucks": "2.0.x",
     "winston": "1.0.x"
   },
+  "license": "<%= license %>",
   "devDependencies": {
     "browser-sync": "2.9.x",
     "chai": "3.2.x",
-    "cult": "2.0.x",
     "del": "2.0.x",
     "gulp": "3.9.x",
     "gulp-autoprefixer": "3.0.x",
-    "gulp-coffee": "2.3.x",
+    "gulp-babel": "5.2.x",
     "gulp-help": "1.6.x",
     "gulp-imagemin": "2.3.x",
     "gulp-minify-css": "1.2.x",
