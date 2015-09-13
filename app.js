@@ -26,9 +26,9 @@ app.use(compression());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function onIndex(req, res) {
-  res.render('index.html', { title: '<%= slugName %>' });
+  res.render('index.html', { title: require('./package').name });
 });
 
 app.listen(app.get('listening port'), app.get('listening ip'), function onListen() {
-  winston.info(`<%= slugName %> listening on ${app.get('listening ip')}:${app.get('listening port')}`);
+  winston.info(`${require('./package').name} listening on ${app.get('listening ip')}:${app.get('listening port')}`);
 });
