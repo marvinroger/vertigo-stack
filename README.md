@@ -13,7 +13,7 @@ This is a web stack using modern bulletproof technologies:
 * **[Codio](http://codio.com)** as Cloud IDE
 * **[NodeJS](http://nodejs.org/api/) with [Express 4](http://expressjs.com/4x/api.html)** as backend software
 * **[Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/api/)** as testing framework
-* **[CoffeeScript](http://coffeescript.org/)** as scripting language
+* **[ES6-7](https://babeljs.io/)** compiled to ES5 as scripting language
 * **[Stylus](http://learnboost.github.io/stylus/)** as styling language
 * **[Nunjucks](http://mozilla.github.io/nunjucks/)** as templating language
 * **[Gulp](https://github.com/gulpjs/gulp/blob/master/README.md#gulp---)** as building tool
@@ -23,8 +23,8 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 ## Features
 
-* Stylus and CoffeScript build on change with source maps support
-* BrowserSync on Stylus/CoffeeScript code change
+* Stylus and ES6-7 build on change with source maps support
+* BrowserSync on Stylus/ES6-7 code change
 * HTML5 Boilerplate-lite with Google Analytics embedded
 * Build with humans.txt update date
 * Automatic testing/deployment with Wercker
@@ -49,6 +49,6 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 ### Usage
 
 * `npm start` to start the app in development mode
-* `npm test` to test the app
-* `npm run dev` to start CoffeeScript/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
+* `npm test` to unit test the app
+* `npm run dev` to start ES6-7/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
 * `npm run build` to build the app
