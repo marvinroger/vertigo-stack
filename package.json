@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "compression": "1.5.x",
-    "express": "4.11.x",
+    "express": "4.13.x",
     "nunjucks": "2.0.x",
     "winston": "1.0.x"
   },
