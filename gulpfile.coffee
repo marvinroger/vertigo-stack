@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 help = require('gulp-help')(gulp)
 autoprefixer = require 'gulp-autoprefixer'
-browserSync = require 'browser-sync'
+browserSync = require('browser-sync').create()
 coffee = require 'gulp-coffee'
 del = require 'del'
 imagemin = require 'gulp-imagemin'
@@ -64,11 +64,11 @@ gulp.task 'dev',
 #########
   
 gulp.task 'clean', 'Clean css, js, dist directories for fresh build', (done) ->
-  del [
+  del([
     './dist'
     './public/css',
     './public/js'
-  ], done
+  ]).then(done)
 
 gulp.task 'copy', 'Copy files to build', ->
   gulp.src './{public,views}/**/*', {base: './'}
