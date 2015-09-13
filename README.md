@@ -1,8 +1,10 @@
-The Vertig![Icon](https://cdn1.iconfinder.com/data/icons/fs-icons-ubuntu-by-franksouza-/32/draw-spiral.png) Stack
+The Vertigo Stack
 =================
 
-[![Dependency Status](https://david-dm.org/marvinroger/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinroger/vertigo-stack)
-[![devDependency Status](https://david-dm.org/marvinroger/vertigo-stack/dev-status.svg?style=flat)](https://david-dm.org/marvinroger/vertigo-stack#info=devDependencies)
+[![Dependency Status](https://david-dm.org/marvinroger/vertigo-stack.svg?style=flat)](https://david-dm.org/marvinroger/vertigo-stack) [![devDependency Status](https://david-dm.org/marvinroger/vertigo-stack/dev-status.svg?style=flat)](https://david-dm.org/marvinroger/vertigo-stack#info=devDependencies)
+
+
+![The Vertigo Stack](http://i.imgur.com/VIfziO0.png "The Vertigo Stack")
 
 A modern web stack that will give you vertigo.
 
@@ -23,6 +25,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 ## Features
 
+* automatically reload the application when node code changed
 * Stylus and ES6-7 build on change with source maps support
 * BrowserSync on Stylus/ES6-7 code change
 * HTML5 Boilerplate-lite with Google Analytics embedded
@@ -50,5 +53,5 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 
 * `npm start` to start the app in development mode
 * `npm test` to unit test the app
-* `npm run dev` to start ES6-7/Stylus watching with BrowserSync (assuming the app is `npm start`ed)
-* `npm run build` to build the app
+* `npm run dev` to start the app in development mode while ES6-7/Stylus watching with BrowserSync
+* `npm run build` to build the app for release
