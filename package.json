@@ -1,12 +1,12 @@
 {
-  "name": "<%= slugName %>",
+  "name": "vertigo-stack",
   "version": "0.0.1",
-  "description": "<%= description %>",
-  "author": "<%= author %>",
+  "description": "A modern web stack that will give you vertigo.",
+  "author": "Marvin Roger",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "<%= repository %>"
+    "url": "https://github.com/marvinroger/vertigo-stack.git"
   },
   "scripts": {
     "start": "node app.js",
@@ -20,7 +20,7 @@
     "nunjucks": "2.0.x",
     "winston": "1.0.x"
   },
-  "license": "<%= license %>",
+  "license": "GNU-2.0",
   "devDependencies": {
     "browser-sync": "2.9.x",
     "chai": "3.2.x",

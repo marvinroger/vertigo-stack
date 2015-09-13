@@ -32,7 +32,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 ## Installation
 
-See [installation](https://github.com/MarvinHQ/slush-vertigo-stack#installation).
+Simply clone this repository and edit `package.json`.
 
 ## Use
 
