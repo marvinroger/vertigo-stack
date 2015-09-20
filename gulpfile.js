@@ -43,12 +43,18 @@ gulp.task('es6-7', 'Process CoffeeScript files with sourcemap support', function
 //  ####################
 
 gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support', ['stylus', 'es6-7'], function(done) {
+  var browserSyncStarted;
   nodemon({
     script: 'app.js',
     ext: 'js',
     ignore: ['assets/', 'public/', 'gulpfile.js'],
     env: { 'NODE_ENV': 'development' }
   }).on('start', function onAppStarted() {
+    if (browserSyncStarted) {
+      return;
+    }
+    browserSyncStarted = true;
+    
     setTimeout(function onAppListening() {
       browserSync.init({
         proxy: '127.0.0.1:3000'
