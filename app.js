@@ -4,9 +4,10 @@ var nunjucks = require('nunjucks');
 var winston = require('winston');
 var app = express();
 
-nunjucks.configure('views', { autoescape: true, express: app });
+var watchHtml = false;
 
 if (app.get('env') === 'development') {
+  watchHtml = true;
   app.set('listening port', 3000);
   app.set('listening ip', '0.0.0.0');
   winston.cli();
@@ -21,6 +22,8 @@ if (app.get('env') === 'development') {
   winston.error('Wrong NODE_ENV');
   process.exit(1);
 }
+
+nunjucks.configure('views', { autoescape: true, express: app, watch: watchHtml });
 
 app.use(compression());
 app.use(express.static(__dirname + '/public'));

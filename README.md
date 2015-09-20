@@ -27,7 +27,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 * automatically reload the application when node code changed
 * Stylus and ES6-7 build on change with source maps support
-* BrowserSync on Stylus/ES6-7 code change
+* BrowserSync on Stylus/ES6-7/HTML code change
 * HTML5 Boilerplate-lite with Google Analytics embedded
 * Build with humans.txt update date
 * Automatic testing/deployment with Wercker
@@ -53,5 +53,5 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 
 * `npm start` to start the app in development mode
 * `npm test` to unit test the app
-* `npm run dev` to start the app in development mode while ES6-7/Stylus watching with BrowserSync
+* `npm run dev` to start the app in development mode while ES6-7/Stylus/HTML watching with BrowserSync
 * `npm run build` to build the app for release

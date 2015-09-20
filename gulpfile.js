@@ -61,7 +61,12 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
   });
   var es67Watcher = gulp.watch('./assets/es6-7/**/*.js', ['es6-7']);
   es67Watcher.on('change', function(event) {
-    console.log(event.path + ' was ' + event.type(+', running ES6-7 to ES5...'));
+    console.log(event.path + ' was ' + event.type + ', running ES6-7 to ES5...');
+  });
+  var htmlWatcher = gulp.watch('./views/**/*.html');
+  htmlWatcher.on('change', function(event) {
+    browserSync.reload();
+    console.log(event.path + ' was ' + event.type + ', reloading browsers...');
   });
 });
 
