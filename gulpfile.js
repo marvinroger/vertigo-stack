@@ -17,7 +17,7 @@ var runSequence = require('run-sequence');
 var sourcemaps = require('gulp-sourcemaps');
 var stylus = require('gulp-stylus');
 var uglify = require('gulp-uglify');
-var nodemon = require('gulp-nodemon');
+var nodemon = require('gulp-nodemon-tempfix');
 
 
 //  ##################

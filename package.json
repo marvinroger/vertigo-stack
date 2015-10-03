@@ -31,7 +31,7 @@
     "gulp-help": "1.6.x",
     "gulp-imagemin": "2.3.x",
     "gulp-minify-css": "1.2.x",
-    "gulp-nodemon": "^2.0.4",
+    "gulp-nodemon-tempfix": "^2.0.4",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-replace": "0.5.x",
