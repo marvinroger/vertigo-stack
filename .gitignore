@@ -1,6 +1,4 @@
-/node_modules/
-/public/css/
-/public/js/
-/dist/
+node_modules/
+public/
+dist/
 npm-debug.log
-.DS_Store

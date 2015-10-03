@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "description": "A modern web stack that will give you vertigo.",
   "author": "Marvin Roger",
-  "main": "app.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/marvinroger/vertigo-stack.git"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "test": "mocha -R spec",
-    "build": "gulp build",
+    "dist": "gulp dist",
     "dev": "gulp dev"
   },
   "dependencies": {
@@ -32,12 +32,16 @@
     "gulp-imagemin": "2.3.x",
     "gulp-minify-css": "1.2.x",
     "gulp-nodemon": "^2.0.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
     "gulp-replace": "0.5.x",
     "gulp-sourcemaps": "1.6.x",
     "gulp-stylus": "2.0.x",
     "gulp-uglify": "1.4.x",
+    "gulp-watch": "^4.3.5",
     "kouto-swiss": "0.11.x",
     "mocha": "2.3.x",
+    "node-notifier": "^4.3.1",
     "run-sequence": "1.1.x"
   }
 }

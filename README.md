@@ -12,13 +12,12 @@ A modern web stack that will give you vertigo.
 
 This is a web stack using modern bulletproof technologies:
 
-* **[Codio](http://codio.com)** as Cloud IDE
 * **[NodeJS](http://nodejs.org/api/) with [Express 4](http://expressjs.com/4x/api.html)** as backend software
 * **[Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/api/)** as testing framework
-* **[ES6-7](https://babeljs.io/)** compiled to ES5 as scripting language
+* **[ES6-7 (using babel)](https://babeljs.io/)** compiled to ES5 as scripting language
 * **[Stylus](http://learnboost.github.io/stylus/)** as styling language
 * **[Nunjucks](http://mozilla.github.io/nunjucks/)** as templating language
-* **[Gulp](https://github.com/gulpjs/gulp/blob/master/README.md#gulp---)** as building tool
+* **[Gulp](https://github.com/gulpjs/gulp/)** as building tool
 * **[Wercker](http://devcenter.wercker.com/)** as CI and Continuous Deployment tool
 
 These technologies allow to be more productive by reducing the amount of code needed, and are all available in NPM, avoiding the need to have another environment like Ruby installed.
@@ -27,9 +26,9 @@ These technologies allow to be more productive by reducing the amount of code ne
 
 * automatically reload the application when node code changed
 * Stylus and ES6-7 build on change with source maps support
-* BrowserSync on Stylus/ES6-7/HTML code change
+* BrowserSync on Stylus/ES6-7/HTML view code change
 * HTML5 Boilerplate-lite with Google Analytics embedded
-* Build with humans.txt update date
+* humans.txt update date
 * Automatic testing/deployment with Wercker
 * Server with compression enabled; threshold set to 1024
 
@@ -38,6 +37,20 @@ These technologies allow to be more productive by reducing the amount of code ne
 Simply clone this repository and edit `package.json`.
 
 ## Use
+
+### File tree
+
+```
+-- app <- front end code
+-- -- css <- stylus files
+-- -- js <- es6/7 files
+-- -- assets <- files not to touch
+-- -- vendor <- vendor files not to touch
+-- public <- app directory, built
+-- views <- back end nunjucks views
+-- test <- back end mocha tests
+
+```
 
 ### Configuration
 
@@ -54,4 +67,4 @@ In order for Wercker to deploy, a deploy target must be added with the `WERCKER_
 * `npm start` to start the app in development mode
 * `npm test` to unit test the app
 * `npm run dev` to start the app in development mode while ES6-7/Stylus/HTML watching with BrowserSync
-* `npm run build` to build the app for release
+* `npm run dist` to distribute the app for release
