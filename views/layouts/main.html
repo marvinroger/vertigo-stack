@@ -22,7 +22,7 @@
         i=a.createElement(r);n=a.getElementsByTagName(r)[0];
         i.src='//www.google-analytics.com/analytics.js';
         n.parentNode.insertBefore(i,n)}(window,document,'script','ga'));
-        ga('create','UA-XXXXX-X');ga('send','pageview');
+        ga('create','{{ gaUuid }}');ga('send','pageview');
       </script>
     {% endif %}
   </body>

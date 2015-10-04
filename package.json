@@ -14,6 +14,9 @@
     "dist": "gulp dist",
     "dev": "gulp dev"
   },
+  "vertigo": {
+    "ga-uuid": "UA-XXXXX-X"
+  },
   "dependencies": {
     "compression": "1.6.x",
     "express": "4.13.x",

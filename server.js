@@ -1,3 +1,5 @@
+var path = require('path');
+
 var compression = require('compression');
 var express = require('express');
 var nunjucks = require('nunjucks');
@@ -23,10 +25,11 @@ if (app.get('env') === 'development') {
   process.exit(1);
 }
 
-nunjucks.configure('views', { autoescape: true, express: app, watch: watchHtml });
+var nunjucksEnv = nunjucks.configure('views', { autoescape: true, express: app, watch: watchHtml });
+nunjucksEnv.addGlobal('gaUuid', require('./package.json').vertigo['ga-uuid']);
 
 app.use(compression());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function onIndex(req, res) {
   res.render('index.html', { title: require('./package').name });
