@@ -22,7 +22,10 @@
   },
   "license": "GPL-2.0",
   "devDependencies": {
+    "babel-runtime": "^5.8.25",
+    "babelify": "^6.3.0",
     "browser-sync": "2.9.x",
+    "browserify": "^11.2.0",
     "chai": "3.3.x",
     "del": "2.0.x",
     "gulp": "3.9.x",
@@ -42,6 +45,8 @@
     "kouto-swiss": "0.11.x",
     "mocha": "2.3.x",
     "node-notifier": "^4.3.1",
-    "run-sequence": "1.1.x"
+    "run-sequence": "1.1.x",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

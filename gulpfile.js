@@ -18,6 +18,10 @@ var sourcemaps = require('gulp-sourcemaps');
 var stylus = require('gulp-stylus');
 var uglify = require('gulp-uglify');
 var nodemon = require('gulp-nodemon-tempfix');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 
 
 //  ##################
@@ -43,23 +47,45 @@ var errorHandler = function(task) {
 //  ######################
 
 gulp.task('stylus', 'Process main.styl with sourcemap support', function() {
-  return gulp.src('./app/css/main.styl').pipe(plumber(errorHandler('stylus'))).pipe(stylus({
-    sourcemap: {
-      inline: true
-    },
-    use: koutoSwiss(),
-    define: [
-      {
-        'ks-vendors-prefixes': false
-      }
-    ]
-  })).pipe(sourcemaps.init({
-    loadMaps: true
-  })).pipe(autoprefixer()).pipe(minifyCss()).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/css')).pipe(browserSync.stream({ match: '**/*.css' })); // match: to avoid full reload as browsersync won't find map file in the dom
+  return gulp.src('./app/css/**/[^_]*.styl')
+    .pipe(plumber(errorHandler('stylus')))
+    .pipe(stylus({
+      sourcemap: {
+        inline: true
+      },
+      use: koutoSwiss(),
+      define: [
+        {
+          'ks-vendors-prefixes': false
+        }
+      ]
+    }))
+    .pipe(sourcemaps.init({
+      loadMaps: true
+    }))
+    .pipe(autoprefixer())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./public/css'))
+    .pipe(browserSync.stream({ match: '**/*.css' })); // match: to avoid full reload as browsersync won't find map file in the dom
 });
 
 gulp.task('es6-7', 'Process CoffeeScript files with sourcemap support', function() {
-  return gulp.src('./app/js/**/*.js').pipe(plumber(errorHandler('es6-7'))).pipe(sourcemaps.init()).pipe(babel()).pipe(uglify()).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/js')).on('end', browserSync.reload);
+  return browserify('./app/js/app.js')
+    .transform(babelify.configure({ optional: ['runtime'] }))
+    .bundle()
+    .on('error', function(error) {
+      errorHandler('es6-7')(error);
+      this.emit('end');
+    }) // Don't crash if failed, plumber alone doesn't work with browserify
+    .pipe(plumber(errorHandler('es6-7'))) // Not sure if still needed
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./public/js'))
+    .on('end', browserSync.reload);
 });
 
 //  ####################
@@ -125,19 +151,28 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
 gulp.task('assets', 'Copy assets to public directory', function() {
   return gulp.src('./app/assets/**/*', {
     base: './app/assets'
-  }).pipe(plumber()).pipe(gulp.dest('./public')).on('end', browserSync.reload);
+  })
+    .pipe(plumber(errorHandler('assets')))
+    .pipe(gulp.dest('./public'))
+    .on('end', browserSync.reload);
 });
 
 gulp.task('vendor', 'Copy vendor to public directory', function(done) {
   return gulp.src('./app/vendor/**/*', {
     base: './app'
-  }).pipe(plumber()).pipe(gulp.dest('./public')).on('end', browserSync.reload);
+  })
+    .pipe(plumber(errorHandler('vendor')))
+    .pipe(gulp.dest('./public'))
+    .on('end', browserSync.reload);
 });
 
 gulp.task('humans', 'Update humans.txt update date', function() {
   var date = new Date();
   var formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
-  return gulp.src(['./public/humans.txt']).pipe(plumber()).pipe(replace('#last_update#', formattedDate)).pipe(gulp.dest('./public'));
+  return gulp.src(['./public/humans.txt'])
+    .pipe(plumber(errorHandler('humans')))
+    .pipe(replace('#last_update#', formattedDate))
+    .pipe(gulp.dest('./public'));
 });
 
 gulp.task('build:clean', 'Clean public directory for fresh public build', function(done) {
@@ -159,15 +194,20 @@ gulp.task('dist:clean', 'Clean dist directory for fresh distribution build', fun
 gulp.task('dist:copy', 'Copy files to dist', function() {
   gulp.src('./{server.js,package.json,public/**/*,views/**/*}', {
     base: './'
-  }).pipe(plumber()).pipe(gulp.dest('./dist'));
+  })
+    .pipe(plumber(errorHandler('dist:copy')))
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('dist:imagemin', 'Minify images in build', function() {
   return gulp.src('./dist/public/img/**/*.{png,jpg,gif,svg}', {
     base: './dist'
-  }).pipe(plumber()).pipe(imagemin({
-    progressive: true
-  })).pipe(gulp.dest('./dist'));
+  })
+    .pipe(plumber(errorHandler('dist:imagemin')))
+    .pipe(imagemin({
+      progressive: true
+    }))
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('dist', 'Dist project into a dist directory', ['build'], function(done) {
