@@ -31,7 +31,7 @@ These technologies allow to be more productive by reducing the amount of code ne
 * during distribution:
   * update humans.txt last updated date
   * CSS autoprefixed
-  * JS/CSS minified
+  * JS/CSS minified and cache busted
 * goodies:
   * HTML5 Boilerplate-lite with Google Analytics embedded
   * server with compression enabled; threshold set to 1024

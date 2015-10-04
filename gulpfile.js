@@ -22,6 +22,8 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var rev = require('gulp-rev');
+var revReplace = require('gulp-rev-replace');
 
 
 //  ##################
@@ -192,7 +194,7 @@ gulp.task('dist:clean', 'Clean dist directory for fresh distribution build', fun
 });
 
 gulp.task('dist:copy', 'Copy files to dist', function() {
-  gulp.src('./{server.js,package.json,public/**/*,views/**/*}', {
+  return gulp.src('./{server.js,package.json,public/**/*,views/**/*}', {
     base: './'
   })
     .pipe(plumber(errorHandler('dist:copy')))
@@ -210,13 +212,42 @@ gulp.task('dist:imagemin', 'Minify images in build', function() {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('dist:cachebust', 'Cache bust in build', function() {
+  return gulp.src(['./dist/public/css/**/*.css', './dist/public/js/**/*.js'], { base: './dist' })
+    .pipe(plumber(errorHandler('dist:cachebust')))
+    .pipe(rev())
+    .pipe(gulp.dest('./dist'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('dist:cachebust-replace', 'Replace cache busted references in build', function() {
+  var stripPublic = function(filename) {
+    return filename.replace('public', '');
+  };
+
+  var manifest = gulp.src('./dist/rev-manifest.json');
+
+  return gulp.src('./dist/views/**/*.html', { base: './dist' })
+    .pipe(plumber(errorHandler('dist:cachebust-replace')))
+    .pipe(revReplace({ manifest: manifest, modifyUnreved: stripPublic, modifyReved: stripPublic }))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('dist:cachebust-clean', 'Clean cache bust files in build', function(done) {
+  del(['./dist/rev-manifest.json']).then(function() {
+    done();
+  });
+});
+
 gulp.task('dist', 'Dist project into a dist directory', ['build'], function(done) {
-  runSequence('dist:clean', 'dist:copy', 'dist:imagemin', function() {
+  runSequence('dist:clean', 'dist:copy', 'dist:imagemin', 'dist:cachebust', 'dist:cachebust-replace', 'dist:cachebust-clean', function() {
     if (errored) {
       console.log('The build failed, cleaning dist directory');
       runSequence('dist:clean', function() {
         process.exit(-1);
       })
     }
+    done();
   });
 });
