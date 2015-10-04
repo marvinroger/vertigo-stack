@@ -4,8 +4,8 @@ build:
     - npm-install
     - npm-test
     - script:
-        name: build
-        code: npm run build
+        name: dist
+        code: npm run dist
     - script:
         name: copy build to deployable
         code: cp -a ./dist/. $WERCKER_OUTPUT_DIR
@@ -15,7 +15,7 @@ deploy:
     - script:
         name: Initialize new repository
         code: |
-          git Init
+          git init
           git config --global user.name "wercker"
           git config --global user.email "pleasemailus@wercker.com"
           git remote add dokku dokku@$SERVER_HOSTNAME:$PROJECT_NAME
