@@ -6,10 +6,7 @@ var nunjucks = require('nunjucks');
 var winston = require('winston');
 var app = express();
 
-var watchHtml = false;
-
 if (app.get('env') === 'development') {
-  watchHtml = true;
   app.set('listening port', 3000);
   app.set('listening ip', '0.0.0.0');
   winston.cli();
@@ -25,7 +22,7 @@ if (app.get('env') === 'development') {
   process.exit(1);
 }
 
-var nunjucksEnv = nunjucks.configure('views', { autoescape: true, express: app, watch: watchHtml });
+var nunjucksEnv = nunjucks.configure('views', { autoescape: true, express: app, watch: (app.get('env') === 'development' ? true : false) });
 nunjucksEnv.addGlobal('gaUuid', require('./package.json').vertigo['ga-uuid']);
 
 app.use(compression());
