@@ -1,3 +1,4 @@
-import lib from './lib.js';
+import riot from 'riot';
+import './app.tag'
 
-console.log(`A taste of the ${lib}`);
+riot.mount('app');

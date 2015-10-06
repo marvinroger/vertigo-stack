@@ -15,6 +15,7 @@ This is a web stack using modern bulletproof technologies:
 * **[NodeJS](https://nodejs.org/) with [Express 4](http://expressjs.com/)** as backend software
 * **[Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/)** as testing framework
 * **[ES6-7 (using babel)](https://babeljs.io/)** compiled to ES5 as frontend scripting language
+* **[Riot](http://riotjs.com/)** as UI library
 * **[Stylus](https://learnboost.github.io/stylus/)** as styling language
 * **[Nunjucks](https://mozilla.github.io/nunjucks/)** as templating language
 * **[Gulp](https://github.com/gulpjs/gulp/)** as building tool
@@ -40,8 +41,8 @@ These technologies allow to be more productive by reducing the amount of code ne
 ## Installation
 
 * clone the repository: `git clone https://github.com/marvinroger/vertigo-stack.git`
-* edit `package.json`.
-  * pay attention to the `vertigo` key, in which you can configure the Google Analytics ID.
+* edit `package.json`
+  * pay attention to the `vertigo` key, in which you can configure the Google Analytics ID
 
 ## Use
 

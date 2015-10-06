@@ -25,6 +25,7 @@
   },
   "license": "GPL-2.0",
   "devDependencies": {
+    "babel": "^5.8.23",
     "babel-runtime": "^5.8.25",
     "babelify": "^6.3.0",
     "browser-sync": "2.9.x",
@@ -50,6 +51,8 @@
     "kouto-swiss": "0.11.x",
     "mocha": "2.3.x",
     "node-notifier": "^4.3.1",
+    "riot": "^2.2.4",
+    "riotify": "^0.1.2",
     "run-sequence": "1.1.x",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

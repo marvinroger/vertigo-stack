@@ -24,6 +24,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
+var riotify = require('riotify');
 
 
 //  ##################
@@ -74,6 +75,7 @@ gulp.task('stylus', 'Process main.styl with sourcemap support', function() {
 
 gulp.task('es6-7', 'Process CoffeeScript files with sourcemap support', function() {
   return browserify('./app/js/app.js')
+    .transform(riotify, { type: 'es6' })
     .transform(babelify.configure({ optional: ['runtime'] }))
     .bundle()
     .on('error', function(error) {
@@ -133,7 +135,7 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
     runSequence('stylus');
   });
 
-  watch('./app/js/**/*.js', function(vinyl) {
+  watch('./app/js/**/*.{js,tag}', function(vinyl) {
     console.log(vinyl.path + ' was ' + vinyl.event + ', running ES6-7 to ES5...');
     runSequence('es6-7');
   });
