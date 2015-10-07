@@ -98,23 +98,21 @@ gulp.task('es6-7', 'Process ES6/7 files with sourcemap support', function () {
 gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support', ['build'], function (done) {
   // Browsersync and nodemon
 
-  let browserSyncStarted;
   nodemon({
     script: 'server.js',
     ext: 'js',
-    ignore: ['app/', 'public/', 'gulpfile.js'],
+    ignore: ['app/', 'public/', 'gulpfile.babel.js'],
+    stdout: false,
     env: { 'NODE_ENV': 'development' }
-  }).on('start', function onAppStarted () {
-    if (browserSyncStarted) {
-      return;
-    }
-    browserSyncStarted = true;
-
-    setTimeout(function onAppListening () {
+  }).on('readable', function onReadable () {
+    this.stdout.pipe(process.stdout);
+    this.stderr.pipe(process.stderr);
+  }).on('stdout', function onAppStarted (buffer) {
+    if (buffer.toString('utf8').includes('listening')) {
       browserSync.init({
         proxy: '127.0.0.1:3000'
       });
-    }, 2 * 1000);
+    }
   });
 
   // Watch to build
