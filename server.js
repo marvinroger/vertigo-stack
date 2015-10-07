@@ -1,9 +1,9 @@
-var path = require('path');
-var compression = require('compression');
-var express = require('express');
-var nunjucks = require('nunjucks');
-var winston = require('winston');
-var app = express();
+let path = require('path');
+let compression = require('compression');
+let express = require('express');
+let nunjucks = require('nunjucks');
+let winston = require('winston');
+let app = express();
 
 //  ######################
 //  # Environment config #
@@ -25,7 +25,7 @@ if (app.get('env') === 'development') {
   process.exit(1);
 }
 
-var nunjucksEnv = nunjucks.configure('views', { autoescape: true, express: app, watch: (app.get('env') === 'development') });
+let nunjucksEnv = nunjucks.configure('views', { autoescape: true, express: app, watch: (app.get('env') === 'development') });
 
 //  #################
 //  # Views globals #
