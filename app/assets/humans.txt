@@ -6,7 +6,7 @@ Location: Paris, France
 
 
 /* SITE */
-Last update: #last_update# (Europe/Paris timezone)
+Last update: ${lastUpdate} (Europe/Paris timezone)
 Main language: fr
 Standards: HTML5, CSS3
 Components: Express, Normalize.css, Nunjucks

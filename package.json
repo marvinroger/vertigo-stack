@@ -8,7 +8,10 @@
     "url": "http://marvinroger.fr"
   },
   "contributors": [],
-  "keywords": ["vertigo", "stack"],
+  "keywords": [
+    "vertigo",
+    "stack"
+  ],
   "homepage": "https://github.com/marvinroger/vertigo-stack",
   "repository": {
     "type": "git",
@@ -49,6 +52,7 @@
     "gulp-help": "^1.6.1",
     "gulp-imagemin": "^2.3.0",
     "gulp-minify-css": "^1.2.1",
+    "gulp-newer": "^0.5.1",
     "gulp-nodemon-tempfix": "^2.0.4",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
