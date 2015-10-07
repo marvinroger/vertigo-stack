@@ -4,8 +4,7 @@ var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var watch = require('gulp-watch'); // gulp.watch doesn't detect new files
 var notifier = require('node-notifier');
-var help = require('gulp-help')(gulp);
-var babel = require('gulp-babel');
+require('gulp-help')(gulp);
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var del = require('del');
@@ -26,15 +25,14 @@ var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 var riotify = require('riotify');
 
-
 //  ##################
 //  # Error notifier #
 //  ##################
 
 var errored = false;
 
-var errorHandler = function(task) {
-  return function(error) {
+var errorHandler = function (task) {
+  return function (error) {
     errored = true;
     console.log('Error in ' + task + ': ' + error.message);
     notifier.notify({
@@ -49,7 +47,7 @@ var errorHandler = function(task) {
 //  # Assets Compilation #
 //  ######################
 
-gulp.task('stylus', 'Process main.styl with sourcemap support', function() {
+gulp.task('stylus', 'Process main.styl with sourcemap support', function () {
   return gulp.src('./app/css/**/[^_]*.styl')
     .pipe(plumber(errorHandler('stylus')))
     .pipe(stylus({
@@ -73,12 +71,12 @@ gulp.task('stylus', 'Process main.styl with sourcemap support', function() {
     .pipe(browserSync.stream({ match: '**/*.css' })); // match: to avoid full reload as browsersync won't find map file in the dom
 });
 
-gulp.task('es6-7', 'Process CoffeeScript files with sourcemap support', function() {
+gulp.task('es6-7', 'Process CoffeeScript files with sourcemap support', function () {
   return browserify('./app/js/app.js')
     .transform(riotify, { type: 'es6' })
     .transform(babelify.configure({ optional: ['runtime'] }))
     .bundle()
-    .on('error', function(error) {
+    .on('error', function (error) {
       errorHandler('es6-7')(error);
       this.emit('end');
     }) // Don't crash if failed, plumber alone doesn't work with browserify
@@ -96,7 +94,7 @@ gulp.task('es6-7', 'Process CoffeeScript files with sourcemap support', function
 //  # Development mode #
 //  ####################
 
-gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support', ['build'], function(done) {
+gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support', ['build'], function (done) {
   // Browsersync and nodemon
 
   var browserSyncStarted;
@@ -105,13 +103,13 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
     ext: 'js',
     ignore: ['app/', 'public/', 'gulpfile.js'],
     env: { 'NODE_ENV': 'development' }
-  }).on('start', function onAppStarted() {
+  }).on('start', function onAppStarted () {
     if (browserSyncStarted) {
       return;
     }
     browserSyncStarted = true;
-    
-    setTimeout(function onAppListening() {
+
+    setTimeout(function onAppListening () {
       browserSync.init({
         proxy: '127.0.0.1:3000'
       });
@@ -120,29 +118,29 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
 
   // Watch to build
 
-  watch('./app/assets/**/*', function(vinyl) {
+  watch('./app/assets/**/*', function (vinyl) {
     console.log(vinyl.path + ' was ' + vinyl.event + ', piping to public/...');
     runSequence('assets');
   });
 
-  watch('./app/vendor/**/*', function(vinyl) {
+  watch('./app/vendor/**/*', function (vinyl) {
     console.log(vinyl.path + ' was ' + vinyl.event + ', piping to public/vendor/...');
     runSequence('vendor');
   });
 
-  watch('./app/css/**/*.styl', function(vinyl) {
+  watch('./app/css/**/*.styl', function (vinyl) {
     console.log(vinyl.path + ' was ' + vinyl.event + ', running Stylus...');
     runSequence('stylus');
   });
 
-  watch('./app/js/**/*.{js,tag}', function(vinyl) {
+  watch('./app/js/**/*.{js,tag}', function (vinyl) {
     console.log(vinyl.path + ' was ' + vinyl.event + ', running ES6-7 to ES5...');
     runSequence('es6-7');
   });
 
   // Watch to reload
 
-  watch('./views/**/*.html', function(vinyl) {
+  watch('./views/**/*.html', function (vinyl) {
     console.log(vinyl.path + ' was ' + vinyl.event + ', reloading browsers...');
     browserSync.reload();
   });
@@ -152,7 +150,7 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
 //  # Build #
 //  #########
 
-gulp.task('assets', 'Copy assets to public directory', function() {
+gulp.task('assets', 'Copy assets to public directory', function () {
   return gulp.src('./app/assets/**/*', {
     base: './app/assets'
   })
@@ -161,7 +159,7 @@ gulp.task('assets', 'Copy assets to public directory', function() {
     .on('end', browserSync.reload);
 });
 
-gulp.task('vendor', 'Copy vendor to public directory', function(done) {
+gulp.task('vendor', 'Copy vendor to public directory', function (done) {
   return gulp.src('./app/vendor/**/*', {
     base: './app'
   })
@@ -170,7 +168,7 @@ gulp.task('vendor', 'Copy vendor to public directory', function(done) {
     .on('end', browserSync.reload);
 });
 
-gulp.task('humans', 'Update humans.txt update date', function() {
+gulp.task('humans', 'Update humans.txt update date', function () {
   var date = new Date();
   var formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
   return gulp.src(['./public/humans.txt'])
@@ -179,23 +177,23 @@ gulp.task('humans', 'Update humans.txt update date', function() {
     .pipe(gulp.dest('./public'));
 });
 
-gulp.task('build:clean', 'Clean public directory for fresh public build', function(done) {
-  del(['./public/**/*']).then(function() {
+gulp.task('build:clean', 'Clean public directory for fresh public build', function (done) {
+  del(['./public/**/*']).then(function () {
     done();
   });
 });
 
-gulp.task('build', 'Build public directory', function(done) {
+gulp.task('build', 'Build public directory', function (done) {
   runSequence('build:clean', 'assets', 'vendor', ['stylus', 'es6-7', 'humans'], done);
 });
 
-gulp.task('dist:clean', 'Clean dist directory for fresh distribution build', function(done) {
-  del(['./dist']).then(function() {
+gulp.task('dist:clean', 'Clean dist directory for fresh distribution build', function (done) {
+  del(['./dist']).then(function () {
     done();
   });
 });
 
-gulp.task('dist:copy', 'Copy files to dist', function() {
+gulp.task('dist:copy', 'Copy files to dist', function () {
   return gulp.src('./{server.js,package.json,public/**/*,views/**/*}', {
     base: './'
   })
@@ -203,7 +201,7 @@ gulp.task('dist:copy', 'Copy files to dist', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('dist:imagemin', 'Minify images in build', function() {
+gulp.task('dist:imagemin', 'Minify images in build', function () {
   return gulp.src('./dist/public/img/**/*.{png,jpg,gif,svg}', {
     base: './dist'
   })
@@ -214,7 +212,7 @@ gulp.task('dist:imagemin', 'Minify images in build', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('dist:cachebust', 'Cache bust in build', function() {
+gulp.task('dist:cachebust', 'Cache bust in build', function () {
   return gulp.src(['./dist/public/css/**/*.css', './dist/public/js/**/*.js'], { base: './dist' })
     .pipe(plumber(errorHandler('dist:cachebust')))
     .pipe(rev())
@@ -223,8 +221,8 @@ gulp.task('dist:cachebust', 'Cache bust in build', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('dist:cachebust-replace', 'Replace cache busted references in build', function() {
-  var stripPublic = function(filename) {
+gulp.task('dist:cachebust-replace', 'Replace cache busted references in build', function () {
+  var stripPublic = function (filename) {
     return filename.replace('public', '');
   };
 
@@ -236,19 +234,19 @@ gulp.task('dist:cachebust-replace', 'Replace cache busted references in build', 
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('dist:cachebust-clean', 'Clean cache bust files in build', function(done) {
-  del(['./dist/rev-manifest.json']).then(function() {
+gulp.task('dist:cachebust-clean', 'Clean cache bust files in build', function (done) {
+  del(['./dist/rev-manifest.json']).then(function () {
     done();
   });
 });
 
-gulp.task('dist', 'Dist project into a dist directory', ['build'], function(done) {
-  runSequence('dist:clean', 'dist:copy', 'dist:imagemin', 'dist:cachebust', 'dist:cachebust-replace', 'dist:cachebust-clean', function() {
+gulp.task('dist', 'Dist project into a dist directory', ['build'], function (done) {
+  runSequence('dist:clean', 'dist:copy', 'dist:imagemin', 'dist:cachebust', 'dist:cachebust-replace', 'dist:cachebust-clean', function () {
     if (errored) {
       console.log('The build failed, cleaning dist directory');
-      runSequence('dist:clean', function() {
+      runSequence('dist:clean', function () {
         process.exit(-1);
-      })
+      });
     }
     done();
   });

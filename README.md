@@ -37,6 +37,7 @@ These technologies allow to be more productive by reducing the amount of code ne
   * HTML5 Boilerplate-lite with Google Analytics embedded
   * server with compression enabled; threshold set to 1024
   * automatic testing/deployment with Wercker
+  * [![js-semistandard-style](https://cdn.rawgit.com/flet/semistandard/master/badge.svg)](https://github.com/Flet/semistandard)
 
 ## Installation
 
