@@ -1,3 +1,5 @@
+'use strict';
+
 let path = require('path');
 let compression = require('compression');
 let express = require('express');
@@ -14,6 +16,8 @@ if (app.get('env') === 'development') {
   app.set('listening ip', '0.0.0.0');
   winston.cli();
 } else if (app.get('env') === 'production') {
+  winston.remove(winston.transports.Console);
+  winston.add(winston.transports.Console, { timestamp: true });
   if (!process.env.PORT || !process.env.IP) {
     winston.error('Missing PORT or IP');
     process.exit(1);

@@ -1,3 +1,5 @@
+'use strict';
+
 let gulp = require('gulp-help')(require('gulp')); // adds a default help task
 let plumber = require('gulp-plumber'); // help to avoid crash if error in a task
 let watch = require('gulp-watch'); // gulp.watch doesn't detect new files
