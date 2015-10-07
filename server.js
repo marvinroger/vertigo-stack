@@ -6,6 +6,7 @@ let express = require('express');
 let nunjucks = require('nunjucks');
 let winston = require('winston');
 let app = express();
+let pkg = require('./package');
 
 //  ######################
 //  # Environment config #
@@ -35,7 +36,7 @@ let nunjucksEnv = nunjucks.configure('views', { autoescape: true, express: app, 
 //  # Views globals #
 //  #################
 
-nunjucksEnv.addGlobal('gaUuid', require('./package.json').vertigo['ga-uuid']);
+nunjucksEnv.addGlobal('gaUuid', pkg.vertigo['ga-uuid']);
 
 //  #######
 //  # App #
@@ -45,9 +46,12 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function onIndex (req, res) {
-  res.render('index.html', { title: require('./package').name });
+  res.render('index.html', { title: pkg.name });
 });
 
 app.listen(app.get('listening port'), app.get('listening ip'), function onListen () {
-  winston.info(`${require('./package').name} listening on ${app.get('listening ip')}:${app.get('listening port')}`);
+  winston.info(`${pkg.name} listening on ${app.get('listening ip')}:${app.get('listening port')}`);
+}).on('error', function onError (err) {
+  winston.error(err.message);
+  process.exit(1);
 });
