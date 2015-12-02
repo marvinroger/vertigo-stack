@@ -15,15 +15,20 @@ let runSequence = require('run-sequence'); // run tasks in series or in parallel
 let sourcemaps = require('gulp-sourcemaps'); // generate source maps
 let stylus = require('gulp-stylus'); // compile stylus to CSS
 let uglify = require('gulp-uglify'); // minify JS
-let nodemon = require('gulp-nodemon-tempfix'); // reload server JS app on change / restart on crash
+let nodemon = require('gulp-nodemon'); // reload server JS app on change / restart on crash
 let browserify = require('browserify'); // helps using modules client side
 let babelify = require('babelify'); // Babel transform for browserify
 let source = require('vinyl-source-stream'); // helper for browserify text stream to gulp pipeline
 let buffer = require('vinyl-buffer'); // helper for browserify
 let rev = require('gulp-rev'); // Cache bust
 let revReplace = require('gulp-rev-replace'); // Replace cache busted occurences in files
-let riotify = require('riotify'); // Riot transform for browserify
 let newer = require('gulp-newer'); // only process changed files in tasks
+
+//  ################
+//  # Workarounds #
+//  ###############
+
+process.once('SIGINT', () => process.exit(0)); // fix for nodemon: see https://github.com/JacksonGariety/gulp-nodemon/issues/33
 
 //  ##################
 //  # Error notifier #
@@ -74,10 +79,10 @@ gulp.task('stylus', 'Process main.styl with sourcemap support', function () {
 
 gulp.task('es6-7', 'Process ES6/7 files with sourcemap support', function () {
   return browserify('./app/js/app.js')
-    .transform(riotify, { type: 'es6' })
-    .transform(babelify.configure({ optional: ['runtime'] }))
+    .transform(babelify.configure({ presets: ['es2015', 'stage-3', 'react'] }))
     .bundle()
     .on('error', function (error) {
+      console.log('error');
       errorHandler('es6-7')(error);
       this.emit('end');
     }) // Don't crash if failed, plumber alone doesn't work with browserify
@@ -102,7 +107,7 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
     script: 'server.js',
     ext: 'js',
     ignore: ['app/', 'public/', 'gulpfile.babel.js'],
-    stdout: false,
+    stdout: false, // Needed to be able to listen to stdout from code
     env: { 'NODE_ENV': 'development' }
   }).on('readable', function onReadable () {
     this.stdout.pipe(process.stdout);
@@ -132,7 +137,7 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
     runSequence('stylus');
   });
 
-  watch('./app/js/**/*.{js,tag}', function (vinyl) {
+  watch('./app/js/**/*.{js,jsx}', function (vinyl) {
     console.log(`${vinyl.path} was ${vinyl.event}, running ES6-7 to ES5...`);
     runSequence('es6-7');
   });

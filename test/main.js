@@ -1,9 +1,9 @@
-/* global describe, it */
+'use strict';
 
-var expect = require('chai').expect;
+let test = require('tape');
 
-describe('Captain Obvious', function () {
-  it('says that 1 + 1 = 2. Really.', function () {
-    expect(1 + 1).to.equal(2);
-  });
+test('captain obvious', function (t) {
+  t.plan(1);
+
+  t.equal(1 + 1, 2);
 });

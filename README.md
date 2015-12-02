@@ -13,9 +13,9 @@ A modern opinionated web stack that will give you vertigo.
 This is a web stack using modern bulletproof technologies:
 
 * **[NodeJS](https://nodejs.org/) with [Express 4](http://expressjs.com/)** as backend software
-* **[Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/)** as testing framework
+* **[tape](https://github.com/substack/tape)** as testing framework
 * **[ES6-7 (using babel)](https://babeljs.io/)** compiled to ES5 as frontend scripting language
-* **[Riot](http://riotjs.com/)** as UI library
+* **[JSX compatible](https://jsx.github.io/)** for easy React usage
 * **[Stylus](https://learnboost.github.io/stylus/)** as styling language
 * **[Nunjucks](https://mozilla.github.io/nunjucks/)** as templating language
 * **[Gulp](https://github.com/gulpjs/gulp/)** as building tool
