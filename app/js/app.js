@@ -1,3 +1,3 @@
 'use strict';
 
-alerl
+console.log(`Awesome ES${2000 + 15}`);

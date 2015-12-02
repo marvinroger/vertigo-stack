@@ -82,7 +82,6 @@ gulp.task('es6-7', 'Process ES6/7 files with sourcemap support', function () {
     .transform(babelify.configure({ presets: ['es2015', 'stage-3', 'react'] }))
     .bundle()
     .on('error', function (error) {
-      console.log('error');
       errorHandler('es6-7')(error);
       this.emit('end');
     }) // Don't crash if failed, plumber alone doesn't work with browserify
@@ -106,7 +105,7 @@ gulp.task('dev', 'Run stylus and es6-7 on file change with BrowserSync support',
   nodemon({
     script: 'server.js',
     ext: 'js',
-    ignore: ['app/', 'public/', 'gulpfile.babel.js'],
+    ignore: ['app/', 'public/', 'gulpfile.js'],
     stdout: false, // Needed to be able to listen to stdout from code
     env: { 'NODE_ENV': 'development' }
   }).on('readable', function onReadable () {

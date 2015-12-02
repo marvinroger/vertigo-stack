@@ -12,13 +12,13 @@ A modern opinionated web stack that will give you vertigo.
 
 This is a web stack using modern bulletproof technologies:
 
-* **[NodeJS](https://nodejs.org/) with [Express 4](http://expressjs.com/)** as backend software
+* **[Node.js](https://nodejs.org/) with [Express 4](http://expressjs.com/)** as backend software
 * **[tape](https://github.com/substack/tape)** as testing framework
 * **[ES6-7 (using babel)](https://babeljs.io/)** compiled to ES5 as frontend scripting language
 * **[JSX compatible](https://jsx.github.io/)** for easy React usage
 * **[Stylus](https://learnboost.github.io/stylus/)** as styling language
 * **[Nunjucks](https://mozilla.github.io/nunjucks/)** as templating language
-* **[Gulp](https://github.com/gulpjs/gulp/)** as building tool
+* **[gulp](https://github.com/gulpjs/gulp/)** as building tool
 * **[Wercker](http://wercker.com/)** as CI and Continuous Deployment tool
 
 These technologies allow to be more productive by reducing the amount of code needed, and are all available in NPM, avoiding the need to have another environment like Ruby installed.
